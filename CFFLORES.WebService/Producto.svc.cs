@@ -21,6 +21,7 @@ namespace CFFLORES.WebService
         {
             EProducto ObProducto = new EProducto();
             ObProducto = daoproducto.ObtenerProducto(codigobarra);
+            /*Se valida que exista Producto*/
             if (ObProducto == null)
             {
                 throw new FaultException<ProductoInexistente>(
@@ -32,7 +33,7 @@ namespace CFFLORES.WebService
                 , new FaultReason("No existe el Producto"));
 
             }
-
+            /*Se valida que exista Stock*/
             if (ObProducto.Stock == 0)
             {
                 throw new FaultException<ProductoInexistente>(
@@ -45,7 +46,7 @@ namespace CFFLORES.WebService
                 , new FaultReason("El producto " + ObProducto.Nombre + " no cuenta con Stock disponible"));
 
             }
-
+            /*Se valida que  se va agotar Stock*/
             if (ObProducto.Stock <= 10)
             {
                 throw new FaultException<ProductoInexistente>(
@@ -58,6 +59,7 @@ namespace CFFLORES.WebService
                 , new FaultReason("El producto " + ObProducto.Nombre + " esta por agotarse"));
 
             }
+            /*Se valida que el producto este habilitado*/
             //0 : Habilitado
             //1: Deshabilitado
             if (String.IsNullOrEmpty(ObProducto.Estado) || ObProducto.Estado.Equals("1"))
