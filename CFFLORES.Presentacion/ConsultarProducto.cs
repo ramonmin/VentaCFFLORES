@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CFFLORES.WebService.Persistencia;
 
 namespace CFFLORES.Presentacion
 {
     public partial class ConsultarProducto : Form
     {
+        private DAOProducto daoproducto = new DAOProducto();
+
         public ConsultarProducto()
         {
             InitializeComponent();
@@ -50,6 +53,19 @@ namespace CFFLORES.Presentacion
              MessageBoxButtons.OK,
              MessageBoxIcon.Exclamation,
              MessageBoxDefaultButton.Button1);
+        }
+
+        private void ConsultarProducto_Load(object sender, EventArgs e)
+        {
+            dgvProducto.AutoGenerateColumns = false;
+            dgvProducto.DataSource = daoproducto.ListarProducto();
+
+
+        }
+
+        private void dgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

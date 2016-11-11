@@ -7,15 +7,13 @@ using System.Web;
 namespace CFFLORES.WebService.Errores
 {
     [DataContract]
-    public class RepetidoException
+    public class ProductoInexistente
     {
         [DataMember]
-        public string excodigobarra { get; set; }
+        public string exError { get; set; }
         [DataMember]
-        public string exNombreProducto { get; set; }
+        public Int32 exCodigo { get; set; }
         [DataMember]
-        public Int32 exStock { get; set; }
-        [DataMember]
-        public Double exPrecio { get; set; }
+        public string exProducto { get; set; }
     }
 }

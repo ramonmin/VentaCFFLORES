@@ -1,14 +1,13 @@
-﻿using CFFLORES.Entidad;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using CFFLORES.AccesoDatos;
 using CFFLORES.WebService.Errores;
-
+using CFFLORES.WebService.Persistencia;
+using CFFLORES.WebService.Dominio;
 
 namespace CFFLORES.WebService
 {
@@ -16,27 +15,65 @@ namespace CFFLORES.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Producto.svc or Producto.svc.cs at the Solution Explorer and start debugging.
     public class Producto : IProducto
     {
-        public void DoWork()
-        {
-        }
-
 
         private DAOProducto daoproducto = new DAOProducto();
-        public string ObtenerProducto(string codigobarra)
+        public EProducto ObtenerProducto(string codigobarra)
         {
-            if (daoproducto.ObtenerProducto(codigobarra) == null)
+            EProducto ObProducto = new EProducto();
+            ObProducto = daoproducto.ObtenerProducto(codigobarra);
+            if (ObProducto == null)
             {
-                throw new FaultException<RepetidoException>(
-                    new RepetidoException()
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
                     {
-                        excodigobarra = codigobarra,
-                        exNombreProducto = "El producto No existe",
-                        exStock = 0
-                    },
-                    new FaultReason("Error al intentar Consultar"));
+                        exCodigo = 10,
+                        exError = "El producto No existe"
+                    }
+                , new FaultReason("No existe el Producto"));
 
             }
-            return daoproducto.ObtenerProducto(codigobarra).Stock.ToString();
+
+            if (ObProducto.Stock == 0)
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 11,
+                        exProducto = ObProducto.Nombre.ToString(),
+                        exError = "El producto "+ ObProducto.Nombre + " no cuenta con Stock disponible"
+                    }
+                , new FaultReason("El producto " + ObProducto.Nombre + " no cuenta con Stock disponible"));
+
+            }
+
+            if (ObProducto.Stock <= 10)
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 12,
+                        exProducto = ObProducto.Nombre.ToString(),
+                        exError = "El producto " + ObProducto.Nombre + " esta por agotarse"
+                    }
+                , new FaultReason("El producto " + ObProducto.Nombre + " esta por agotarse"));
+
+            }
+            //0 : Habilitado
+            //1: Deshabilitado
+            if (String.IsNullOrEmpty(ObProducto.Estado) || ObProducto.Estado.Equals("1"))
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 13,
+                        exProducto = ObProducto.Nombre.ToString(),
+                        exError = "El producto " + ObProducto.Nombre + " esta Deshabilitado"
+                    }
+                , new FaultReason("El producto " + ObProducto.Nombre + " esta Deshabilitado"));
+
+            }
+
+            return ObProducto;
         }
 
         public EProducto CrearProducto(EProducto productos)
@@ -73,6 +110,10 @@ namespace CFFLORES.WebService
             return daoproducto.ModificarProducto(productos);
         }
 
+        public List<EProducto> ListarProducto()
+        {
+            return daoproducto.ListarProducto();
+        }
 
     }
 }

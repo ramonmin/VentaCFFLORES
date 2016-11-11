@@ -1,4 +1,4 @@
-﻿using CFFLORES.Entidad;
+﻿using CFFLORES.WebService.Dominio;
 using CFFLORES.WebService.Errores;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,8 @@ namespace CFFLORES.WebService
     public interface IProducto
     {
         [OperationContract]
-        string ObtenerProducto(string codigobarra);
+        [FaultContract(typeof(ProductoInexistente))]
+        EProducto ObtenerProducto(string codigobarra);
 
         [FaultContract(typeof(RepetidoException))]
         [OperationContract]
@@ -24,6 +25,8 @@ namespace CFFLORES.WebService
         [OperationContract]
         EProducto ModificarProducto(EProducto productos);
 
+        [OperationContract]
+        List<EProducto> ListarProducto();
 
     }
 }

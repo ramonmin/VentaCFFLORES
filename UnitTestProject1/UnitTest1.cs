@@ -14,13 +14,13 @@ namespace UnitTestProject1
             ProductoWSC.EProducto productocreado = proxy.CrearProducto(new ProductoWSC.EProducto()
                 {
                     codigobarra = "555555555556",
-                    NombreProducto = "Prueba3",
+                    Nombre = "Prueba3",
                     Stock = 20
                 }
                 );
 
             Assert.AreEqual("555555555556", productocreado.codigobarra);
-            Assert.AreEqual("Prueba3", productocreado.NombreProducto);
+            Assert.AreEqual("Prueba3", productocreado.Nombre);
             Assert.AreEqual(20, productocreado.Stock);
         }
         [TestMethod]
@@ -32,7 +32,7 @@ namespace UnitTestProject1
                 ProductoWSC.EProducto productocreado = proxy.CrearProducto(new ProductoWSC.EProducto()
                 {
                     codigobarra = "555555555557",
-                    NombreProducto = "Prueba4",
+                    Nombre = "Prueba4",
                     Stock = 100
                 });
             }
@@ -53,13 +53,13 @@ namespace UnitTestProject1
             ProductoWSC.EProducto productomodificar = proxy.ModificarProducto(new ProductoWSC.EProducto()
             {
                 codigobarra = "123",
-                NombreProducto = "Prueba Test1",
+                Nombre = "Prueba Test1",
                 Stock = 21
             }
                 );
 
             Assert.AreEqual("123", productomodificar.codigobarra);
-            Assert.AreEqual("Prueba Test1", productomodificar.NombreProducto);
+            Assert.AreEqual("Prueba Test1", productomodificar.Nombre);
             Assert.AreEqual(21, productomodificar.Stock);
         }
 
@@ -73,7 +73,7 @@ namespace UnitTestProject1
                 ProductoWSC.EProducto productocreado = proxy.ModificarProducto(new ProductoWSC.EProducto()
                 {
                     codigobarra = "121",
-                    NombreProducto = "Prueba test A",
+                    Nombre = "Prueba test A",
                     Stock = 47
                 });
             }
@@ -87,5 +87,27 @@ namespace UnitTestProject1
 
         }
 
+        [TestMethod]
+        public void TestObtenerProductoFault()
+        {
+            ProductoWSC.ProductoClient proxy = new ProductoWSC.ProductoClient();
+            string codigobarra = "121212121212";
+            try
+            {
+                ProductoWSC.EProducto productocreado = proxy.ObtenerProducto(codigobarra);
+            }
+            catch (FaultException<ProductoWSC.ProductoInexistente> error)
+            {
+                if (error.Detail.exCodigo == 10) 
+                    Assert.AreEqual("No existe el Producto", error.Reason.ToString());
+                if (error.Detail.exCodigo == 11)
+                    Assert.AreEqual("El producto " + error.Detail.exProducto + " no cuenta con Stock disponible", error.Reason.ToString());
+                if (error.Detail.exCodigo == 12)
+                    Assert.AreEqual("El producto " + error.Detail.exProducto + " esta por agotarse", error.Reason.ToString());
+                if (error.Detail.exCodigo == 13)
+                    Assert.AreEqual("El producto " + error.Detail.exProducto + " esta Deshabilitado", error.Reason.ToString());
+            }
+
+        }
     }
 }
