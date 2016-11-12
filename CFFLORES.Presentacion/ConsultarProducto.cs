@@ -36,19 +36,30 @@ namespace CFFLORES.Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("El Producto <Nombre Producto> esta por agotarse, queda <Numero de Stock>.",
+            MessageBox.Show("Para Buscar Nombre o Tipo, no debe registrar Codigo de Barras",
+                             "Errpr",
+             MessageBoxButtons.OK,
+             MessageBoxIcon.Error,
+             MessageBoxDefaultButton.Button1);
+            MessageBox.Show("El Producto <Nombre Producto> esta por agotarse.",
              "Adventencia",
              MessageBoxButtons.OK,
              MessageBoxIcon.Exclamation,
              MessageBoxDefaultButton.Button1);
 
-            MessageBox.Show("El Producto seleccionado no cuenta con Stock Disponible.",
+            MessageBox.Show("El Producto <Nombre Producto> no cuenta con Stock Disponible.",
              "Adventencia",
              MessageBoxButtons.OK,
              MessageBoxIcon.Exclamation,
              MessageBoxDefaultButton.Button1);
 
             MessageBox.Show("El Producto no existe.",
+             "Adventencia",
+             MessageBoxButtons.OK,
+             MessageBoxIcon.Exclamation,
+             MessageBoxDefaultButton.Button1);
+
+            MessageBox.Show("El Producto <Nombre Producto> esta Deshabilitado",
              "Adventencia",
              MessageBoxButtons.OK,
              MessageBoxIcon.Exclamation,

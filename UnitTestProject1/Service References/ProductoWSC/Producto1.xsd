@@ -6,6 +6,7 @@
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Precio" type="xs:double" />
       <xs:element minOccurs="0" name="Stock" type="xs:int" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="codigobarra" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

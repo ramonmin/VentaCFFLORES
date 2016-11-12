@@ -8,13 +8,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductoInexistente" nillable="true" type="tns:ProductoInexistente" />
-  <xs:complexType name="RepetidoException">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="exNombreProducto" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="exPrecio" type="xs:double" />
-      <xs:element minOccurs="0" name="exStock" type="xs:int" />
-      <xs:element minOccurs="0" name="excodigobarra" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="RepetidoException" nillable="true" type="tns:RepetidoException" />
 </xs:schema>

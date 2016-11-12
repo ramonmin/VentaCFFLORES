@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFFLORES.Presentacion", "CFFLORES.Presentacion\CFFLORES.Presentacion.csproj", "{F6063701-27E3-425C-A19B-8BACE461378D}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFFLORES.Entidad", "CFFLORE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFFLORES.WebService", "CFFLORES.WebService\CFFLORES.WebService.csproj", "{7052067B-411F-45B2-B86D-244F93082233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{231B15B1-6FEE-4E66-A79C-6074DB5D244D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFFLORES.TestService", "UnitTestProject1\CFFLORES.TestService.csproj", "{231B15B1-6FEE-4E66-A79C-6074DB5D244D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7052067B-411F-45B2-B86D-244F93082233} = {7052067B-411F-45B2-B86D-244F93082233}
 	EndProjectSection

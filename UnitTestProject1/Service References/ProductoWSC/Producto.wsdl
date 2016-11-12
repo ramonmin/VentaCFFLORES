@@ -17,24 +17,6 @@
   <wsdl:message name="IProducto_ObtenerProducto_ProductoInexistenteFault_FaultMessage">
     <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores" name="detail" element="q1:ProductoInexistente" />
   </wsdl:message>
-  <wsdl:message name="IProducto_CrearProducto_InputMessage">
-    <wsdl:part name="parameters" element="tns:CrearProducto" />
-  </wsdl:message>
-  <wsdl:message name="IProducto_CrearProducto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CrearProductoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProducto_CrearProducto_RepetidoExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores" name="detail" element="q2:RepetidoException" />
-  </wsdl:message>
-  <wsdl:message name="IProducto_ModificarProducto_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarProducto" />
-  </wsdl:message>
-  <wsdl:message name="IProducto_ModificarProducto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarProductoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProducto_ModificarProducto_RepetidoExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores" name="detail" element="q3:RepetidoException" />
-  </wsdl:message>
   <wsdl:message name="IProducto_ListarProducto_InputMessage">
     <wsdl:part name="parameters" element="tns:ListarProducto" />
   </wsdl:message>
@@ -46,16 +28,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProducto/ObtenerProducto" message="tns:IProducto_ObtenerProducto_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProducto/ObtenerProductoResponse" message="tns:IProducto_ObtenerProducto_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IProducto/ObtenerProductoProductoInexistenteFault" name="ProductoInexistenteFault" message="tns:IProducto_ObtenerProducto_ProductoInexistenteFault_FaultMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CrearProducto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProducto/CrearProducto" message="tns:IProducto_CrearProducto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProducto/CrearProductoResponse" message="tns:IProducto_CrearProducto_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IProducto/CrearProductoRepetidoExceptionFault" name="RepetidoExceptionFault" message="tns:IProducto_CrearProducto_RepetidoExceptionFault_FaultMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModificarProducto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProducto/ModificarProducto" message="tns:IProducto_ModificarProducto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProducto/ModificarProductoResponse" message="tns:IProducto_ModificarProducto_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IProducto/ModificarProductoRepetidoExceptionFault" name="RepetidoExceptionFault" message="tns:IProducto_ModificarProducto_RepetidoExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ListarProducto">
       <wsdl:input wsaw:Action="http://tempuri.org/IProducto/ListarProducto" message="tns:IProducto_ListarProducto_InputMessage" />
@@ -74,30 +46,6 @@
       </wsdl:output>
       <wsdl:fault name="ProductoInexistenteFault">
         <soap:fault use="literal" name="ProductoInexistenteFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="CrearProducto">
-      <soap:operation soapAction="http://tempuri.org/IProducto/CrearProducto" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="RepetidoExceptionFault">
-        <soap:fault use="literal" name="RepetidoExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="ModificarProducto">
-      <soap:operation soapAction="http://tempuri.org/IProducto/ModificarProducto" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="RepetidoExceptionFault">
-        <soap:fault use="literal" name="RepetidoExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ListarProducto">

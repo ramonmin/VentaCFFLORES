@@ -35,6 +35,9 @@ namespace UnitTestProject1.ProductoWSC {
         private int StockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string codigobarraField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -95,6 +98,19 @@ namespace UnitTestProject1.ProductoWSC {
                 if ((this.StockField.Equals(value) != true)) {
                     this.StockField = value;
                     this.RaisePropertyChanged("Stock");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tipo {
+            get {
+                return this.TipoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoField, value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
                 }
             }
         }
@@ -199,123 +215,16 @@ namespace UnitTestProject1.ProductoWSC {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RepetidoException", Namespace="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores")]
-    [System.SerializableAttribute()]
-    public partial class RepetidoException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string exNombreProductoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double exPrecioField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int exStockField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string excodigobarraField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string exNombreProducto {
-            get {
-                return this.exNombreProductoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.exNombreProductoField, value) != true)) {
-                    this.exNombreProductoField = value;
-                    this.RaisePropertyChanged("exNombreProducto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double exPrecio {
-            get {
-                return this.exPrecioField;
-            }
-            set {
-                if ((this.exPrecioField.Equals(value) != true)) {
-                    this.exPrecioField = value;
-                    this.RaisePropertyChanged("exPrecio");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int exStock {
-            get {
-                return this.exStockField;
-            }
-            set {
-                if ((this.exStockField.Equals(value) != true)) {
-                    this.exStockField = value;
-                    this.RaisePropertyChanged("exStock");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string excodigobarra {
-            get {
-                return this.excodigobarraField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.excodigobarraField, value) != true)) {
-                    this.excodigobarraField = value;
-                    this.RaisePropertyChanged("excodigobarra");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductoWSC.IProducto")]
     public interface IProducto {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ObtenerProducto", ReplyAction="http://tempuri.org/IProducto/ObtenerProductoResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTestProject1.ProductoWSC.ProductoInexistente), Action="http://tempuri.org/IProducto/ObtenerProductoProductoInexistenteFault", Name="ProductoInexistente", Namespace="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores")]
-        UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra);
+        UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra, string nombre, string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ObtenerProducto", ReplyAction="http://tempuri.org/IProducto/ObtenerProductoResponse")]
-        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/CrearProducto", ReplyAction="http://tempuri.org/IProducto/CrearProductoResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTestProject1.ProductoWSC.RepetidoException), Action="http://tempuri.org/IProducto/CrearProductoRepetidoExceptionFault", Name="RepetidoException", Namespace="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores")]
-        UnitTestProject1.ProductoWSC.EProducto CrearProducto(UnitTestProject1.ProductoWSC.EProducto productos);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/CrearProducto", ReplyAction="http://tempuri.org/IProducto/CrearProductoResponse")]
-        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> CrearProductoAsync(UnitTestProject1.ProductoWSC.EProducto productos);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ModificarProducto", ReplyAction="http://tempuri.org/IProducto/ModificarProductoResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(UnitTestProject1.ProductoWSC.RepetidoException), Action="http://tempuri.org/IProducto/ModificarProductoRepetidoExceptionFault", Name="RepetidoException", Namespace="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores")]
-        UnitTestProject1.ProductoWSC.EProducto ModificarProducto(UnitTestProject1.ProductoWSC.EProducto productos);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ModificarProducto", ReplyAction="http://tempuri.org/IProducto/ModificarProductoResponse")]
-        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ModificarProductoAsync(UnitTestProject1.ProductoWSC.EProducto productos);
+        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra, string nombre, string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ListarProducto", ReplyAction="http://tempuri.org/IProducto/ListarProductoResponse")]
         UnitTestProject1.ProductoWSC.EProducto[] ListarProducto();
@@ -351,28 +260,12 @@ namespace UnitTestProject1.ProductoWSC {
                 base(binding, remoteAddress) {
         }
         
-        public UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra) {
-            return base.Channel.ObtenerProducto(codigobarra);
+        public UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra, string nombre, string tipo) {
+            return base.Channel.ObtenerProducto(codigobarra, nombre, tipo);
         }
         
-        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra) {
-            return base.Channel.ObtenerProductoAsync(codigobarra);
-        }
-        
-        public UnitTestProject1.ProductoWSC.EProducto CrearProducto(UnitTestProject1.ProductoWSC.EProducto productos) {
-            return base.Channel.CrearProducto(productos);
-        }
-        
-        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> CrearProductoAsync(UnitTestProject1.ProductoWSC.EProducto productos) {
-            return base.Channel.CrearProductoAsync(productos);
-        }
-        
-        public UnitTestProject1.ProductoWSC.EProducto ModificarProducto(UnitTestProject1.ProductoWSC.EProducto productos) {
-            return base.Channel.ModificarProducto(productos);
-        }
-        
-        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ModificarProductoAsync(UnitTestProject1.ProductoWSC.EProducto productos) {
-            return base.Channel.ModificarProductoAsync(productos);
+        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra, string nombre, string tipo) {
+            return base.Channel.ObtenerProductoAsync(codigobarra, nombre, tipo);
         }
         
         public UnitTestProject1.ProductoWSC.EProducto[] ListarProducto() {

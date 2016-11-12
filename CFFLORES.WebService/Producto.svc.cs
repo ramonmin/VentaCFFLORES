@@ -17,10 +17,27 @@ namespace CFFLORES.WebService
     {
 
         private DAOProducto daoproducto = new DAOProducto();
-        public EProducto ObtenerProducto(string codigobarra)
+        public EProducto ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
+            if (String.IsNullOrEmpty(codigobarra)) codigobarra = "";
+            if (String.IsNullOrEmpty(nombre)) nombre = "";
+            if (String.IsNullOrEmpty(tipo)) tipo = "";
+
+            /*Se valida que exista Producto*/
+            if (codigobarra.Length != 0 && (nombre.Length !=0 || tipo.Length !=0))
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 1,
+                        exError = "Para Buscar Nombre o Tipo, no debe registrar Codigo de Barras"
+                    }
+                , new FaultReason("Para Buscar Nombre o Tipo, no debe registrar Codigo de Barras"));
+
+            }
+
             EProducto ObProducto = new EProducto();
-            ObProducto = daoproducto.ObtenerProducto(codigobarra);
+            ObProducto = daoproducto.ObtenerProducto(codigobarra,nombre,tipo);
             /*Se valida que exista Producto*/
             if (ObProducto == null)
             {
@@ -30,7 +47,22 @@ namespace CFFLORES.WebService
                         exCodigo = 10,
                         exError = "El producto No existe"
                     }
-                , new FaultReason("No existe el Producto"));
+                , new FaultReason("El producto No existe"));
+
+            }
+            /*Se valida que el producto este habilitado*/
+            //0 : Habilitado
+            //1: Deshabilitado
+            if (String.IsNullOrEmpty(ObProducto.Estado) || ObProducto.Estado.Equals("1"))
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 13,
+                        exProducto = ObProducto.Nombre.ToString(),
+                        exError = "El producto " + ObProducto.Nombre + " esta Deshabilitado"
+                    }
+                , new FaultReason("El producto " + ObProducto.Nombre + " esta Deshabilitado"));
 
             }
             /*Se valida que exista Stock*/
@@ -59,25 +91,11 @@ namespace CFFLORES.WebService
                 , new FaultReason("El producto " + ObProducto.Nombre + " esta por agotarse"));
 
             }
-            /*Se valida que el producto este habilitado*/
-            //0 : Habilitado
-            //1: Deshabilitado
-            if (String.IsNullOrEmpty(ObProducto.Estado) || ObProducto.Estado.Equals("1"))
-            {
-                throw new FaultException<ProductoInexistente>(
-                    new ProductoInexistente()
-                    {
-                        exCodigo = 13,
-                        exProducto = ObProducto.Nombre.ToString(),
-                        exError = "El producto " + ObProducto.Nombre + " esta Deshabilitado"
-                    }
-                , new FaultReason("El producto " + ObProducto.Nombre + " esta Deshabilitado"));
 
-            }
 
             return ObProducto;
         }
-
+        /*
         public EProducto CrearProducto(EProducto productos)
         {
             if (daoproducto.ObtenerProducto(productos.codigobarra) != null)
@@ -111,7 +129,7 @@ namespace CFFLORES.WebService
             }
             return daoproducto.ModificarProducto(productos);
         }
-
+        */
         public List<EProducto> ListarProducto()
         {
             return daoproducto.ListarProducto();

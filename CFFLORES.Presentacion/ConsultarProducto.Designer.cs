@@ -38,8 +38,6 @@
             this.dgvProducto = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +47,8 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,7 +59,7 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(736, 512);
+            this.splitter1.Size = new System.Drawing.Size(690, 502);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
@@ -70,8 +70,6 @@
             this.groupBox1.Controls.Add(this.dgvProducto);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -79,14 +77,14 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(707, 482);
+            this.groupBox1.Size = new System.Drawing.Size(664, 482);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(596, 100);
+            this.button1.Location = new System.Drawing.Point(509, 64);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
@@ -110,12 +108,14 @@
             this.CodigoBarra,
             this.Nombre,
             this.Stock,
-            this.Precio});
+            this.Precio,
+            this.Estado,
+            this.Tipo});
             this.dgvProducto.Location = new System.Drawing.Point(8, 100);
             this.dgvProducto.Margin = new System.Windows.Forms.Padding(4);
             this.dgvProducto.Name = "dgvProducto";
             this.dgvProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducto.Size = new System.Drawing.Size(580, 375);
+            this.dgvProducto.Size = new System.Drawing.Size(647, 375);
             this.dgvProducto.TabIndex = 10;
             this.dgvProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellContentClick);
             this.dgvProducto.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
@@ -138,31 +138,6 @@
             this.label4.Size = new System.Drawing.Size(86, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Descripcion:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Ninguno",
-            "Clorox",
-            "Liguria",
-            "Sapolio"});
-            this.comboBox2.Location = new System.Drawing.Point(424, 55);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(179, 24);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(359, 59);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Marcar:";
             // 
             // comboBox1
             // 
@@ -203,7 +178,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(744, 171);
+            this.textBox3.Location = new System.Drawing.Point(698, 172);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -214,10 +189,10 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(744, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(697, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(240, 149);
+            this.pictureBox1.Size = new System.Drawing.Size(240, 164);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
@@ -252,11 +227,23 @@
             this.Precio.HeaderText = "Precio";
             this.Precio.Name = "Precio";
             // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            // 
             // ConsultarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 512);
+            this.ClientSize = new System.Drawing.Size(943, 502);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox1);
@@ -282,8 +269,6 @@
         private System.Windows.Forms.DataGridView dgvProducto;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -294,5 +279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
     }
 }

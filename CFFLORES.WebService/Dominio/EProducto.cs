@@ -19,5 +19,7 @@ namespace CFFLORES.WebService.Dominio
         public Double Precio { get; set; }
         [DataMember]
         public string Estado { get; set; }
+        [DataMember]
+        public string Tipo { get; set; }
     }
 }

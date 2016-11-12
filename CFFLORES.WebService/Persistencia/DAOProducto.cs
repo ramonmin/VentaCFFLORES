@@ -9,19 +9,34 @@ namespace CFFLORES.WebService.Persistencia
 {
     public class DAOProducto
     {
-        //private string cadenaconexion = "Data Source=fbd27b4e-9c23-410d-9c8a-a6b8002930c7.sqlserver.sequelizer.com;Initial Catalog=dbfbd27b4e9c23410d9c8aa6b8002930c7;User Id=rghevpnksnsulkdu;Password=VKpabnBJuTpNEYn6J2RgS3vfAgD8p7BxYaf8Wp2BVRWfvZ32uVoHPae3ojG3RCtw;";
-        private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
-        public EProducto ObtenerProducto(string codigobarra)
+        private string cadenaconexion = "Data Source=fbd27b4e-9c23-410d-9c8a-a6b8002930c7.sqlserver.sequelizer.com;Initial Catalog=dbfbd27b4e9c23410d9c8aa6b8002930c7;User Id=rghevpnksnsulkdu;Password=VKpabnBJuTpNEYn6J2RgS3vfAgD8p7BxYaf8Wp2BVRWfvZ32uVoHPae3ojG3RCtw;";
+        //private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
+        public EProducto ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
 
             EProducto productoEncontrado = null;
-            string sql = "SELECT * FROM producto WHERE CodigoBarra = @cod";
+            string sql = "";
+            if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length != 0)
+                 sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom and tipo = @tip";
+            else if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length == 0)
+                sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom";
+            else if (codigobarra.Length != 0 && nombre.Length == 0 && tipo.Length == 0)
+                sql = "SELECT * FROM producto WHERE CodigoBarra = @cod";
+            else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length != 0)
+                sql = "SELECT * FROM producto WHERE nombre = @nom and tipo = @tip";
+            else if (codigobarra.Length == 0 && nombre.Length == 0 && tipo.Length != 0)
+                sql = "SELECT * FROM producto WHERE tipo = @tip";
+            else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length == 0)
+                sql = "SELECT * FROM producto WHERE nombre = @nom ";
+
             using (SqlConnection con = new SqlConnection(cadenaconexion))
             {
                 con.Open();
                 using (SqlCommand com = new SqlCommand(sql, con))
                 {
                     com.Parameters.Add(new SqlParameter("@cod", codigobarra));
+                    com.Parameters.Add(new SqlParameter("@nom", nombre));
+                    com.Parameters.Add(new SqlParameter("@tip", tipo));
                     using (SqlDataReader resultado = com.ExecuteReader())
                     {
                         if (resultado.Read())
@@ -32,7 +47,8 @@ namespace CFFLORES.WebService.Persistencia
                                 Nombre = (string)resultado["Nombre"],
                                 Stock = Int32.Parse(resultado["Stock"].ToString()),
                                 Precio = Double.Parse(resultado["Precio"].ToString()),
-                                Estado = (string)resultado["Estado"]
+                                Estado = (string)resultado["Estado"],
+                                Tipo = (string)resultado["Tipo"]
                             };
                         }
                     }
@@ -40,7 +56,7 @@ namespace CFFLORES.WebService.Persistencia
             }
             return productoEncontrado;
         }
-
+        /*
         public EProducto CrearProducto(EProducto productoACrear)
         {
             EProducto productoCreado = null;
@@ -80,7 +96,7 @@ namespace CFFLORES.WebService.Persistencia
             productoCreado = ObtenerProducto(productoACrear.codigobarra);
             return productoCreado;
         }
-
+*/
         public List<EProducto> ListarProducto()
         {
             List<EProducto> productoList = new List<EProducto>();
@@ -101,7 +117,8 @@ namespace CFFLORES.WebService.Persistencia
                                 Nombre = (string)resultado["Nombre"].ToString(),
                                 Stock = Int32.Parse(resultado["Stock"].ToString()),
                                 Precio = Double.Parse(resultado["Precio"].ToString()),
-                                Estado = (string)resultado["Estado"].ToString()
+                                Estado = (string)resultado["Estado"].ToString(),
+                                Tipo = (string)resultado["Tipo"]
                             };
                             productoList.Add(productobe);
                         }
