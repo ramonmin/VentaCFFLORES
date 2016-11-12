@@ -37,7 +37,7 @@ namespace CFFLORES.Presentacion
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Para Buscar Nombre o Tipo, no debe registrar Codigo de Barras",
-                             "Errpr",
+                             "Error",
              MessageBoxButtons.OK,
              MessageBoxIcon.Error,
              MessageBoxDefaultButton.Button1);
