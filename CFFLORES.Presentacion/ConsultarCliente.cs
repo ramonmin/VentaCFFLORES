@@ -25,8 +25,8 @@ namespace CFFLORES.Presentacion
         {
             if (textBox1.Text.Equals("") && textBox2.Text.Equals(""))
             {
-                MessageBox.Show("Debe llenar por lo menos una busqueda",
-                "Adventencia",
+                MessageBox.Show("Debes llenar por lo menos una busqueda",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
@@ -36,7 +36,7 @@ namespace CFFLORES.Presentacion
             if (textBox1.Text.Length != 8)
             {
                 MessageBox.Show("El DNI debe contener 8 Caracteres",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
@@ -46,7 +46,7 @@ namespace CFFLORES.Presentacion
             if (textBox1.Text.Equals("44745474"))
             {
                 MessageBox.Show("El Cliente no Existe",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
