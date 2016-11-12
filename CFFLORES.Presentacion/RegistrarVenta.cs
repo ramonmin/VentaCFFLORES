@@ -46,7 +46,7 @@ namespace CFFLORES.Presentacion
             if (count == 0)
             {
                 MessageBox.Show("Debes seleccionar por lo menos una Venta",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
@@ -100,7 +100,7 @@ namespace CFFLORES.Presentacion
             if (count == 0)
             {
                 MessageBox.Show("Debes seleccionar por lo menos una Venta",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
@@ -140,7 +140,7 @@ namespace CFFLORES.Presentacion
             if (count == 0)
             {
                 MessageBox.Show("Debes seleccionar por lo menos una Venta",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
