@@ -96,7 +96,6 @@ namespace CFFLORES.Presentacion
             }
         }
 
-
         private void transaccionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
