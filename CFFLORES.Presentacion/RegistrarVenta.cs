@@ -32,7 +32,6 @@ namespace CFFLORES.Presentacion
         private void button9_Click(object sender, EventArgs e)
         {
 
-
             int count = 0;
 
             for (int i = 0; i <= dataGridView1.RowCount - 1; i++)
@@ -46,7 +45,7 @@ namespace CFFLORES.Presentacion
 
             if (count == 0)
             {
-                MessageBox.Show("Debe seleccionar por lo menos una Venta",
+                MessageBox.Show("Debes seleccionar por lo menos una Venta",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
@@ -71,8 +70,8 @@ namespace CFFLORES.Presentacion
 
         private void button6_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Esta Seguro que desea cancelar la Venta?",
-            "Atencion",
+            DialogResult result = MessageBox.Show("¿Está Seguro que desea cancelar la Venta?",
+            "Atención",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button2);
@@ -100,7 +99,7 @@ namespace CFFLORES.Presentacion
 
             if (count == 0)
             {
-                MessageBox.Show("Debe seleccionar por lo menos una Venta",
+                MessageBox.Show("Debes seleccionar por lo menos una Venta",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
@@ -109,8 +108,8 @@ namespace CFFLORES.Presentacion
             }
             
 
-            DialogResult result = MessageBox.Show("¿Esta Seguro que desea Anular la Venta?",
-            "Atencion",
+            DialogResult result = MessageBox.Show("¿Está Seguro que desea Anular la Venta?",
+            "Atención",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button2);
@@ -140,7 +139,7 @@ namespace CFFLORES.Presentacion
 
             if (count == 0)
             {
-                MessageBox.Show("Debe seleccionar por lo menos una Venta",
+                MessageBox.Show("Debes seleccionar por lo menos una Venta",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
@@ -148,15 +147,15 @@ namespace CFFLORES.Presentacion
                 return;
             }
 
-            DialogResult result = MessageBox.Show("¿Esta Seguro que desea Imprimir la Venta?",
-            "Atencion",
+            DialogResult result = MessageBox.Show("¿Está Seguro que desea Imprimir la Venta?",
+            "Atención",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button2);
 
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                MessageBox.Show("Imprimiendo....");
+                MessageBox.Show("Imprimiendo..");
             }
         }
 
@@ -182,17 +181,13 @@ namespace CFFLORES.Presentacion
   
         }
 
-   
-
-        private void tabControl1_Click(object sender, EventArgs e)
+           private void tabControl1_Click(object sender, EventArgs e)
         {
             if (this.tabControl1.TabPages.Contains(this.tabPage2))
                 this.tabControl1.TabPages.Remove(this.tabPage2);
             else
                 this.tabControl1.TabPages.Add(this.tabPage2);
         }
-
-
 
     }
 }
